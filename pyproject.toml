@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "project-flask-gb"
+version = "0.1.0"
+description = ""
+authors = ["P.Baranov <100687223+MadJhey@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "project_flask_gb"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
