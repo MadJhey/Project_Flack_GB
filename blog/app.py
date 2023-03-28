@@ -1,23 +1,14 @@
-from datetime import time
-
-import werkzeug
 from flask import Flask
-from flask import Request
 
-# __name__ имя файла
-app = Flask(__name__)
+from blog.user.views import user
+from blog.article.views import article
 
-
-@app.route('/<int:num>')
-def index(num: int):
-    return f'Hello {num}'
-
-
-@app.before_request
-def before_request():
-    pass
+def create_app() -> Flask:
+    app = Flask(__name__)
+    register_blueprints(app)
+    return app
 
 
-@app.errorhandler(404)
-def error_404(error):
-    return f'error 404'
+def register_blueprints(app: Flask):
+    app.register_blueprint(user)
+    app.register_blueprint(article)
