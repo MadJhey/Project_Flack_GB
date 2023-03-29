@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+Index Page
+{% endblock %}
+
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <h1>Users</h1>
+        {% for id in users %}
+        <li><a href="{{ url_for('user.get_user', pk = id) }}">{{ users[id] }}</a></li>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
