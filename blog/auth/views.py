@@ -10,7 +10,7 @@ auth = Blueprint('auth', __name__, static_folder='../static')
 @auth.route('/login', methods=('GET',))
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('user.details', pk=current_user.id))
+        return redirect(url_for('user.get_user', pk=current_user.id))
 
     return render_template(
         'auth/login.html',
