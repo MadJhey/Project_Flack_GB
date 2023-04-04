@@ -1,7 +1,8 @@
 from flask import Flask
 from blog import commands
-from blog.extensions import db, login_manager
+from blog.extensions import db, login_manager, migrate
 from blog.models.user import User
+
 
 def create_app() -> Flask:
     app = Flask(__name__)
@@ -9,11 +10,14 @@ def create_app() -> Flask:
     register_extensions(app)
     register_blueprints(app)
     register_commands(app)
+
+
     return app
 
 
 def register_extensions(app):
     db.init_app(app)
+    migrate.init_app(app, db, compare_type=True)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)

@@ -1,19 +1,10 @@
-version: '3'
+version: '3.1'
 
 services:
-  app:
-    build:
-      dockerfile: ./Dockerfile
-      context: .
-    environment:
-      DATABASE_URL: postgresql://user:password@database:5432/blog
-    ports:
-    - 8080:5000
-    depends_on:
-      - database
-
-  database:
+  db:
     image: postgres:12.7-alpine
+#    image: postgres:13.1
+    privileged: true
     environment:
       POSTGRES_DB: blog
       POSTGRES_USER: user
@@ -22,7 +13,18 @@ services:
     - pgdata:/var/lib/postgresql/data
     ports:
     - 5432:5432
-
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    environment:
+      DATABASE_URL: postgresql://user:password@database:5432/blog
+    ports:
+      - 8080:5000
+#    command: bash -c "./wait-for-postgres.sh db && python3 flask init-db && python3 flask create-users && python3 flask run --host=0.0.0.0"
+#    command: bash -c "python3 flask init-db && python3 flask create-users && python3 flask run --host=0.0.0.0"
+    depends_on:
+      - db
 
 volumes:
   pgdata:
