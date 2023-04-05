@@ -12,7 +12,7 @@ def init_db():
     flask init-db
     """
     db.create_all()
-    print("done!")
+    print("db done!")
 
 
 @click.command("create-users")

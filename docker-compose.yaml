@@ -1,7 +1,7 @@
 version: '3.1'
 
 services:
-  db:
+  database:
     image: postgres:12.7-alpine
 #    image: postgres:13.1
     privileged: true
@@ -22,9 +22,9 @@ services:
     ports:
       - 8080:5000
 #    command: bash -c "./wait-for-postgres.sh db && python3 flask init-db && python3 flask create-users && python3 flask run --host=0.0.0.0"
-#    command: bash -c "python3 flask init-db && python3 flask create-users && python3 flask run --host=0.0.0.0"
+    command: bash -c "python3 -m flask init-db && python3 -m flask create-users && python3 -m flask run --host=0.0.0.0"
     depends_on:
-      - db
+      - database
 
 volumes:
   pgdata:
