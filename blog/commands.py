@@ -23,9 +23,9 @@ def create_users():
     > done! created users: <User #1 'admin'> <User #2 'james'>
     """
     from blog.models.user import User
-    admin = User(username="admin", is_staff=True)
-    james = User(username="james")
-    jhon = User(username="jhon", is_staff=True)
+    admin = User(username="admin", is_staff=True, password=generate_password_hash('admin'))
+    james = User(username="james", password=generate_password_hash('james'))
+    jhon = User(username="jhon", is_staff=True, password=generate_password_hash('jhon'))
     db.session.add(admin)
     db.session.add(james)
     db.session.add(jhon)
