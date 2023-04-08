@@ -21,7 +21,6 @@ services:
       DATABASE_URL: postgresql://user:password@database:5432/blog
     ports:
       - 8080:5000
-#    command: bash -c "./wait-for-postgres.sh db && python3 flask init-db && python3 flask create-users && python3 flask run --host=0.0.0.0"
     command: bash -c "python3 -m flask init-db && python3 -m flask create-users && python3 -m flask run --host=0.0.0.0"
     depends_on:
       - database
