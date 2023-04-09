@@ -8,8 +8,8 @@ Index Page
 <div class="row">
     <div class="col">
         <h1>Articles</h1>
-        {% for id in articles %}
-        <li><a href="{{ url_for('article.get_article', pk = id) }}">{{ articles[id]['title'] }}</a></li>
+        {% for article in articles %}
+            <li><a href="{{ url_for('article.get_article', pk = article.id) }}">"{{ article.title }}" by {{ article.author.user.username }}</a></li>
         {% endfor %}
     </div>
 </div>
