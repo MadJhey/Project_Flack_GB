@@ -5,7 +5,7 @@ User page
 {% block body %}
 <h1> {{ user.id }} </h1>
 <h1> {{ user.username }} </h1>
-
+{{ user.username }} has created {{ user.author.article|length }} articles
 {% for article in user.author.article %}
 <ul>
     <li>
