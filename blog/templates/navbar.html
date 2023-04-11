@@ -11,17 +11,25 @@
                     <a class="nav-link" href="{{ url_for('user.user_list')}}">Users</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('author.author_list')}}">Authors</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('article.article_list')}}">Articles</a>
                 </li>
                 {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout ({{ current_user.username }})</a>
-                </li>
-                {% endif %}
-                {% if not current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('article.create_article_form') }}">Create article</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout ({{ current_user.username }})</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.register') }}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                    </li>
                 {% endif %}
 
             </ul>

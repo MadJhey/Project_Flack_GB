@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}
-User page
+    article_id
 {% endblock %}
-{% block body %}
 
-<h1> title: {{ art['title'] }} </h1>
-<h1> text: {{ art['text'] }} </h1>
-<h1> author id: {{ art['author'] }} </h1>
+{% block body %}
+    <h1> Title: {{ art.title }} </h1>
+    <h2> author: {{ art.author.user.username }} </h2>
+    <p> text: {{ art['text'] }} </p>
+    <div> Created at {{ art.created_at}} </div>
+    <div> Updated at {{ art.updated_at}} </div>
 {% endblock %}
 
 

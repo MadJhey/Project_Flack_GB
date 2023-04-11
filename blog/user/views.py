@@ -50,7 +50,6 @@ def register():
 @user.route('/')
 @login_required
 def user_list():
-    # from blog.models.user import User
     users = User.query.all()
     return render_template('users/list.html',
                            users=users
