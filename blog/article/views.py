@@ -6,7 +6,7 @@ from werkzeug.utils import redirect
 
 from blog.extensions import db
 from blog.forms.article import CreateArticleForm
-from blog.models import Tag
+from blog.models.tag import Tag
 from blog.models.article import Article
 from blog.models.author import Author
 
