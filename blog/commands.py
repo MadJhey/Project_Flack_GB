@@ -31,3 +31,25 @@ def create_users():
     db.session.add(jhon)
     db.session.commit()
     print("done! created users:", admin, james, jhon)
+
+
+@click.command("create-tags")
+@with_appcontext
+def create_tags():
+    """Run in your terminal:
+        flask create-tags
+        > done! created tags>
+        """
+    from blog.models import Tag
+    for name in [
+        "flask",
+        "django",
+        "python",
+        "sqlalchemy",
+        "news",
+    ]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+        db.session.commit()
+        click.echo(f'created tag {name}')
+
