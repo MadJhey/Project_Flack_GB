@@ -1,8 +1,10 @@
-from flask import Flask
+import os
+
+from flask import Flask, send_from_directory
 from blog import commands
 from blog.extensions import db, login_manager, migrate, csrf
+from blog.admin import admin
 from blog.models.user import User
-
 
 
 def create_app() -> Flask:
@@ -14,10 +16,12 @@ def create_app() -> Flask:
 
     return app
 
+
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db, compare_type=True)
     csrf.init_app(app)
+    admin.init_app(app)
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -26,6 +30,11 @@ def register_extensions(app):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    @app.route('/favicon.ico')
+    def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico',
+                                   mimetype='image/vnd.microsoft.icon')
+
 
 def register_blueprints(app: Flask):
     from blog.auth.views import auth
@@ -33,12 +42,10 @@ def register_blueprints(app: Flask):
     from blog.article.views import article
     from blog.author.views import author
 
-
     app.register_blueprint(user)
     app.register_blueprint(auth)
     app.register_blueprint(article)
     app.register_blueprint(author)
-
 
 
 def register_commands(app: Flask):

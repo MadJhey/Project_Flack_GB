@@ -13,5 +13,6 @@ class Author(db.Model):
     user = relationship('User', back_populates='author')
     article = relationship('Article', back_populates='author')
 
-    # def __init__(self, user_id):
-    #     self.user_id = user_id
+
+    def __str__(self):
+        return self.user.username

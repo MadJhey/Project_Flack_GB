@@ -28,3 +28,6 @@ class Article(db.Model):
         self.author_id = author_id
         self.title = title
         self.text = text
+
+    def __str__(self):
+        return self.title
