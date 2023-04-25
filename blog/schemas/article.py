@@ -17,7 +17,7 @@ class ArticleSchema(Schema):
     updated_at = fields.DateTime(allow_none=False)
 
     author = Relationship(
-        self_url="/api/articles/{id}/relationships/author",
+        # self_url="/api/articles/{id}/relationships/author",
         nested='AuthorSchema',
         attribute='author',
         related_url='author_detail',
@@ -29,7 +29,7 @@ class ArticleSchema(Schema):
 
     tags = Relationship(
         nested='TagSchema',
-        attribute='tags',
+        attribute='tag',
         related_url='tag_detail',
         related_url_kwargs={'id': '<id>'},
         schema='TagSchema',
