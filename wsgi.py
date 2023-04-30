@@ -6,6 +6,7 @@ from blog.models.user import User
 app = create_app()
 
 
+
 @app.route("/")
 def index():
     return redirect('/users/')
